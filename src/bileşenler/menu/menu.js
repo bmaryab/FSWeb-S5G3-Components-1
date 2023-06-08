@@ -26,11 +26,38 @@ let menuElemanlari = [
 
   Adım 3: Hala fonksiyon içindeyiz, DOM'dan menü düğmesini seçin ('menu-button' sınıfına(class) sahip öğe).
 
-  Adım 4: Menü butonuna bir `click` event dinleyicisi ekleyin. Butona her tıklanıldığında div.menu classına `menu--open`('menu' class'ına sahip olan div) ekleyip/silecek(toogle).
+  Adım 4: Menü butonuna bir `click` event dinleyicisi ekleyin.
+  Butona her tıklanıldığında div.menu classına `menu--open`('menu' class'ına sahip olan div) ekleyip/silecek(toogle).
   
-  İPUCU: Javascript'te toogle metotları bir öğeyi bir elemana ekleyip/çıkarmaya yarar. Örnek olarak bir öğeye tıklandığında bir class toogle'ı kullanıldığında, o öğreye tıklandığında eğer o class ismi öğede yoksa ekler, eğer o class ismi öğede varsa siler. Toogle - aç kapa manasına da gelir.
+  İPUCU: Javascript'te toogle metotları bir öğeyi bir elemana ekleyip/çıkarmaya yarar.
+  Örnek olarak bir öğeye tıklandığında bir class toogle'ı kullanıldığında,
+  o öğreye tıklandığında eğer o class ismi öğede yoksa ekler, eğer o class ismi öğede varsa siler. Toogle - aç kapa manasına da gelir.
 
   Adım 5: Oluştrulan div.menu 'yü döndürmeyi unutmayın.
 
   Adım 6: 'menuYapici' fonksiyonunu ve 'menuElemanlari' dizisini kullanarak menüyü oluşturun, ve döndürülen menüyü header'e ekleyin.
 */
+
+
+function menuYapici (menuElemanlari){
+  const menuDiv = document.createElement("div");
+  menuDiv.classList.add("menu");
+
+  const ulElemani = document.createElement("ul");
+  menuDiv.appendChild(ulElemani);
+
+  for (let i = 0; i < menuElemanlari.length; i++){
+  let liElemani = document.createElement("li");
+  liElemani.textContent = menuElemanlari[i];
+  ulElemani.appendChild(liElemani);
+}
+
+document.querySelector(".menu-button").addEventListener("click", function(){menuDiv.classList.toggle("menu--open")});
+
+return menuDiv;
+
+}
+
+const menu = menuYapici(menuElemanlari);
+
+document.querySelector(".header").appendChild(menu);
